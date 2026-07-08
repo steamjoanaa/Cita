@@ -20,6 +20,7 @@
 <body>
 
     <div class="background-hearts">
+
         <span>💚</span>
         <span>🤍</span>
         <span>💚</span>
@@ -28,6 +29,7 @@
         <span>🤍</span>
         <span>💚</span>
         <span>🤍</span>
+
     </div>
 
     <div class="blob blob1"></div>
@@ -76,42 +78,17 @@
 
     </main>
 
-    <script type="module">
-
-        import { db } from "./firebase.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+    <script>
 
         const restaurants = document.querySelectorAll(".restaurant");
 
         restaurants.forEach(button => {
 
-            button.addEventListener("click", async () => {
+            button.addEventListener("click", () => {
 
-                const restaurant = button.dataset.restaurant;
+                localStorage.setItem("restaurant", button.dataset.restaurant);
 
-                // Guardar al navegador
-                localStorage.setItem("restaurant", restaurant);
-
-                try {
-
-                    // Guardar a Firebase
-                    await addDoc(collection(db, "respostes"), {
-
-                        restaurant: restaurant,
-                        acceptada: true,
-                        data: new Date()
-
-                    });
-
-                    // Anar a la següent pàgina
-                    window.location.href = "final.html";
-
-                } catch (error) {
-
-                    console.error(error);
-                    alert("Hi ha hagut un error guardant la resposta.");
-
-                }
+                window.location.href = "data.html";
 
             });
 

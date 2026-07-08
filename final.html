@@ -68,38 +68,45 @@
 
     <script>
 
-        // Mostrar el restaurant escollit
+        // Mostrar el restaurant
         const restaurant = localStorage.getItem("restaurant") || "Per confirmar";
 
         document.getElementById("restaurantEscollit").textContent = restaurant;
 
-        // Botó del calendari
         document.getElementById("calendarButton").addEventListener("click", () => {
 
-            // ===========================
-            // CANVIA NOMÉS AQUESTES DADES
-            // ===========================
+            const dia = localStorage.getItem("dia");
+            const hora = localStorage.getItem("hora");
 
-            const data = "2026-07-25"; // Format: AAAA-MM-DD
-            const hora = "20:00";      // Format: HH:MM
+            if (!dia || !hora) {
 
-            // ===========================
+                alert("No s'ha trobat la data o l'hora de la cita.");
 
-            const inici = new Date(`${data}T${hora}:00`);
+                return;
 
-            // La cita durarà 1 hora
+            }
+
+            const inici = new Date(`${dia}T${hora}:00`);
+
+            // Durada d'1 hora
             const fi = new Date(inici.getTime() + 60 * 60 * 1000);
 
             function formatDate(date) {
+
                 return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
             }
+
+            const ubicacio = restaurant === "Sorprèn-me ✨"
+                ? "Lloc per descobrir ❤️"
+                : restaurant;
 
             const ics = `BEGIN:VCALENDAR
 VERSION:2.0
 BEGIN:VEVENT
 SUMMARY:❤️ La nostra cita
-DESCRIPTION:No puc esperar que arribi aquest dia ❤️
-LOCATION:${restaurant}
+DESCRIPTION:Tinc moltes ganes de passar aquest dia amb tu ❤️
+LOCATION:${ubicacio}
 DTSTART:${formatDate(inici)}
 DTEND:${formatDate(fi)}
 END:VEVENT
@@ -121,6 +128,8 @@ END:VCALENDAR`;
             document.body.removeChild(a);
 
             URL.revokeObjectURL(url);
+
+            alert("❤️ El calendari s'ha preparat! Només queda afegir-lo al teu calendari.");
 
         });
 

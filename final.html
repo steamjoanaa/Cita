@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La nostra cita ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="background-hearts">
+
+        <span>💚</span>
+        <span>🤍</span>
+        <span>💚</span>
+        <span>🤍</span>
+        <span>💚</span>
+        <span>🤍</span>
+        <span>💚</span>
+        <span>🤍</span>
+
+    </div>
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <main class="card">
+
+        <p class="subtitle">
+            ❤️ Ja tenim el pla! ❤️
+        </p>
+
+        <h1>
+            No puc esperar que arribi el dia 🥹
+        </h1>
+
+        <p class="description">
+            Has escollit:
+        </p>
+
+        <h2 id="restaurantEscollit" style="margin-bottom:30px;color:#4CAF50;">
+            ...
+        </h2>
+
+        <p class="description">
+            Moltes gràcies per acceptar aquesta cita.
+            <br><br>
+            Tinc moltes ganes de passar aquest dia amb tu. 💚
+        </p>
+
+        <button id="calendarButton">
+            📅 Afegir al calendari
+        </button>
+
+    </main>
+
+    <script>
+
+        const restaurant = localStorage.getItem("restaurant");
+
+        document.getElementById("restaurantEscollit").textContent = restaurant;
+
+        document.getElementById("calendarButton").addEventListener("click", () => {
+
+            alert("📅 Aquesta funció la farem al següent pas!");
+
+        });
+
+    </script>
+
+</body>
+
+</html>

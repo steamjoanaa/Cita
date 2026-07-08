@@ -1,0 +1,41 @@
+<script type="module">
+
+import { db } from "./firebase.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const restaurants = document.querySelectorAll(".restaurant");
+
+restaurants.forEach(button => {
+
+    button.addEventListener("click", async () => {
+
+        const restaurant = button.dataset.restaurant;
+
+        // Es guarda al navegador
+        localStorage.setItem("restaurant", restaurant);
+
+        // Es guarda a Firebase
+        try {
+
+            await addDoc(collection(db, "respostes"), {
+
+                restaurant: restaurant,
+                acceptada: true,
+                data: new Date()
+
+            });
+
+            window.location.href = "final.html";
+
+        } catch (error) {
+
+            console.error(error);
+            alert("Hi ha hagut un error guardant la resposta.");
+
+        }
+
+    });
+
+});
+
+</script>

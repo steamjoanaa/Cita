@@ -1,0 +1,266 @@
+/* -------------------- */
+/* CONFIGURACIÓ GENERAL */
+/* -------------------- */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(135deg,#d9f7be,#b7eb8f);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+    overflow:hidden;
+
+}
+
+
+/* -------------------- */
+/* CERCLES DECORATIUS */
+/* -------------------- */
+
+.blob{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    opacity:.4;
+
+    z-index:0;
+
+}
+
+.blob1{
+
+    width:300px;
+    height:300px;
+
+    background:#ffffff;
+
+    top:-80px;
+    left:-80px;
+
+}
+
+.blob2{
+
+    width:250px;
+    height:250px;
+
+    background:#8be28b;
+
+    bottom:-70px;
+    right:-50px;
+
+}
+
+.blob3{
+
+    width:180px;
+    height:180px;
+
+    background:#ffffff;
+
+    top:60%;
+    left:10%;
+
+}
+
+
+/* -------------------- */
+/* CORS DEL FONS */
+/* -------------------- */
+
+.background-hearts{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+.background-hearts span{
+
+    position:absolute;
+
+    font-size:30px;
+
+    opacity:.3;
+
+}
+
+.background-hearts span:nth-child(1){top:10%;left:10%;}
+.background-hearts span:nth-child(2){top:25%;left:80%;}
+.background-hearts span:nth-child(3){top:70%;left:15%;}
+.background-hearts span:nth-child(4){top:50%;left:90%;}
+.background-hearts span:nth-child(5){top:15%;left:50%;}
+.background-hearts span:nth-child(6){top:80%;left:65%;}
+.background-hearts span:nth-child(7){top:35%;left:30%;}
+.background-hearts span:nth-child(8){top:65%;left:45%;}
+
+
+/* -------------------- */
+/* TARGETA */
+/* -------------------- */
+
+.card{
+
+    position:relative;
+
+    z-index:2;
+
+    width:90%;
+    max-width:650px;
+
+    background:rgba(255,255,255,.85);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:30px;
+
+    padding:60px 45px;
+
+    text-align:center;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+
+/* -------------------- */
+/* TEXT */
+/* -------------------- */
+
+.subtitle{
+
+    color:#4CAF50;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+h1{
+
+    font-size:40px;
+
+    color:#2f4f2f;
+
+    margin-bottom:25px;
+
+}
+
+.description{
+
+    color:#555;
+
+    line-height:1.7;
+
+    margin-bottom:40px;
+
+}
+
+
+/* -------------------- */
+/* BOTONS */
+/* -------------------- */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+button{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:15px 35px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#yesButton{
+
+    background:#5fcf65;
+
+    color:white;
+
+}
+
+#yesButton:hover{
+
+    transform:scale(1.08);
+
+}
+
+#noButton{
+
+    background:#ff7d7d;
+
+    color:white;
+
+    position:relative;
+
+}
+
+
+/* -------------------- */
+/* MÒBIL */
+/* -------------------- */
+
+@media(max-width:600px){
+
+    h1{
+
+        font-size:30px;
+
+    }
+
+    .card{
+
+        padding:40px 25px;
+
+    }
+
+    .buttons{
+
+        flex-direction:column;
+
+    }
+
+}

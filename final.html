@@ -68,13 +68,59 @@
 
     <script>
 
-        const restaurant = localStorage.getItem("restaurant");
+        // Mostrar el restaurant escollit
+        const restaurant = localStorage.getItem("restaurant") || "Per confirmar";
 
         document.getElementById("restaurantEscollit").textContent = restaurant;
 
+        // Botó del calendari
         document.getElementById("calendarButton").addEventListener("click", () => {
 
-            alert("📅 Aquesta funció la farem al següent pas!");
+            // ===========================
+            // CANVIA NOMÉS AQUESTES DADES
+            // ===========================
+
+            const data = "2026-07-25"; // Format: AAAA-MM-DD
+            const hora = "20:00";      // Format: HH:MM
+
+            // ===========================
+
+            const inici = new Date(`${data}T${hora}:00`);
+
+            // La cita durarà 1 hora
+            const fi = new Date(inici.getTime() + 60 * 60 * 1000);
+
+            function formatDate(date) {
+                return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+            }
+
+            const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:❤️ La nostra cita
+DESCRIPTION:No puc esperar que arribi aquest dia ❤️
+LOCATION:${restaurant}
+DTSTART:${formatDate(inici)}
+DTEND:${formatDate(fi)}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([ics], { type: "text/calendar" });
+
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+
+            a.href = url;
+            a.download = "LaNostraCita.ics";
+
+            document.body.appendChild(a);
+
+            a.click();
+
+            document.body.removeChild(a);
+
+            URL.revokeObjectURL(url);
 
         });
 

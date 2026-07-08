@@ -1,41 +1,124 @@
-<script type="module">
+<!DOCTYPE html>
+<html lang="ca">
 
-import { db } from "./firebase.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+<head>
 
-const restaurants = document.querySelectorAll(".restaurant");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-restaurants.forEach(button => {
+    <title>La nostra cita ❤️</title>
 
-    button.addEventListener("click", async () => {
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        const restaurant = button.dataset.restaurant;
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        // Es guarda al navegador
-        localStorage.setItem("restaurant", restaurant);
+    <link rel="stylesheet" href="style.css">
 
-        // Es guarda a Firebase
-        try {
+</head>
 
-            await addDoc(collection(db, "respostes"), {
+<body>
 
-                restaurant: restaurant,
-                acceptada: true,
-                data: new Date()
+    <div class="background-hearts">
+        <span>💚</span>
+        <span>🤍</span>
+        <span>💚</span>
+        <span>🤍</span>
+        <span>💚</span>
+        <span>🤍</span>
+        <span>💚</span>
+        <span>🤍</span>
+    </div>
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <main class="card">
+
+        <p class="subtitle">
+            ❤️ Sabia que diries que sí ❤️
+        </p>
+
+        <h1>
+            M'has fet molt feliç 🥹
+        </h1>
+
+        <p class="description">
+            Ara només queda decidir una cosa...
+            <br><br>
+            On t'agradaria que anéssim?
+        </p>
+
+        <div class="buttons" style="flex-direction: column;">
+
+            <button class="restaurant" data-restaurant="Italià 🍕">
+                🍕 Italià
+            </button>
+
+            <button class="restaurant" data-restaurant="Sushi 🍣">
+                🍣 Sushi
+            </button>
+
+            <button class="restaurant" data-restaurant="Hamburgueses 🍔">
+                🍔 Hamburgueses
+            </button>
+
+            <button class="restaurant" data-restaurant="Cafeteria ☕">
+                ☕ Cafeteria
+            </button>
+
+            <button class="restaurant" data-restaurant="Sorprèn-me ✨">
+                ✨ Sorprèn-me
+            </button>
+
+        </div>
+
+    </main>
+
+    <script type="module">
+
+        import { db } from "./firebase.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+        const restaurants = document.querySelectorAll(".restaurant");
+
+        restaurants.forEach(button => {
+
+            button.addEventListener("click", async () => {
+
+                const restaurant = button.dataset.restaurant;
+
+                // Guardar al navegador
+                localStorage.setItem("restaurant", restaurant);
+
+                try {
+
+                    // Guardar a Firebase
+                    await addDoc(collection(db, "respostes"), {
+
+                        restaurant: restaurant,
+                        acceptada: true,
+                        data: new Date()
+
+                    });
+
+                    // Anar a la següent pàgina
+                    window.location.href = "final.html";
+
+                } catch (error) {
+
+                    console.error(error);
+                    alert("Hi ha hagut un error guardant la resposta.");
+
+                }
 
             });
 
-            window.location.href = "final.html";
+        });
 
-        } catch (error) {
+    </script>
 
-            console.error(error);
-            alert("Hi ha hagut un error guardant la resposta.");
+</body>
 
-        }
-
-    });
-
-});
-
-</script>
+</html>
